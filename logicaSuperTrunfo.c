@@ -158,55 +158,68 @@ void compararCartas(struct cartaTrunfo cartaA, struct cartaTrunfo cartaB,int cod
     printf("===================================================\n");
     printf("Carta A (%d/%s) Vs Carta B(%d/%s) \n",cartaA.cod,cartaA.estado,cartaB.cod,cartaB.estado);
 
+    switch (codDoAtributo)
+    {
+    case 0:
+        /* code */
+        if (cartaA.populacao > cartaB.populacao){
+            printf("Populacao : Carta A vence (1)\n");
+        }else{
+            printf("Populacao : Carta B vence (0)\n");
+        };
+        break;
+    case 1:
+        if (cartaA.area > cartaB.area){
+            printf("Area : Carta A vence (1)\n");
+        }else{
+            printf("Area : Carta B vence (0)\n");
+        };
+        break;
+    case 2:
+        if (cartaA.pib > cartaB.pib){
+            printf("PIB : Carta A vence (1)\n");
+        }else{
+            printf("PIB : Carta B vence (0)\n");
+        };
+        break;
+    case 3:
+        if (cartaA.pontosTuristicos > cartaB.pontosTuristicos){
+            printf("Pontos Turisticos : Carta A vence (1)\n");
+        }else{
+            printf("Pontos Turisticos : Carta B vence (0)\n");
+        };
+        break;
+    case 4:
+        if (cartaA.densidade < cartaB.densidade){
+            printf("Densidade : Carta A vence (1)\n");
+        }else{
+            printf("Densidade: Carta B vence (0)\n");
+        };
+        break;
+    case 5:
+        if (cartaA.pibPerCapita	 > cartaB.pibPerCapita){
+            printf("PIB per capita : Carta A vence (1)\n");
+        }else{
+            printf("PIB per capita : Carta B vence (0)\n");
+        };
 
-    if (cartaA.populacao > cartaB.populacao){
-        printf("Populacao : Carta A vence (1)\n");
-    }else{
-        printf("Populacao : Carta B vence (0)\n");
-    };
-
-    if (cartaA.area > cartaB.area){
-        printf("Area : Carta A vence (1)\n");
-    }else{
-        printf("Area : Carta B vence (0)\n");
-    };
-
-    if (cartaA.pib > cartaB.pib){
-        printf("PIB : Carta A vence (1)\n");
-    }else{
-        printf("PIB : Carta B vence (0)\n");
-    };
-
-    if (cartaA.pontosTuristicos > cartaB.pontosTuristicos){
-        printf("Pontos Turisticos : Carta A vence (1)\n");
-    }else{
-        printf("Pontos Turisticos : Carta B vence (0)\n");
-    };
-
-    if (cartaA.densidade < cartaB.densidade){
-        printf("Densidade : Carta A vence (1)\n");
-    }else{
-        printf("Densidade: Carta B vence (0)\n");
-    };
+        break;
+    default:
+        if (cartaA.superPoder > cartaB.superPoder){
+            printf("Super Poder : Carta A vence (1)\n");
+        }else{
+            printf("Super Poder : Carta B vence (0)\n");
+        };
+        break;
+    }
     
-    if (cartaA.pibPerCapita	 > cartaB.pibPerCapita){
-        printf("PIB per capita : Carta A vence (1)\n");
-    }else{
-        printf("PIB per capita : Carta B vence (0)\n");
-    };
-
-    if (cartaA.superPoder > cartaB.superPoder){
-        printf("Super Poder : Carta A vence (1)\n");
-    }else{
-        printf("Super Poder : Carta B vence (0)\n");
-    };
-
     printf("===================================================\n");
 };
 int main() {
     // Definição das variáveis para armazenar as propriedades das cidades
     // Você pode utilizar o código do primeiro desafio
     int codAttr = 0;
+    char sair[1];
     struct baralhoTrunfo baralhoA;
     baralhoA.qtdCartas = 0;
 
@@ -250,16 +263,30 @@ int main() {
     // Exemplo:
     // printf("A cidade vencedora é: %s\n", cidadeVencedora);
     if (baralhoA.qtdCartas == 2){
-        printf("Insira o código do atributo para comparar : ");
-        printf("Cód : Atributo");
-        printf("0   :   Populacao");
-        printf("1   :   Area");
-        printf("2   :   PIB");
-        printf("3   :   Pontos Turisticos");
-        printf("4   :   Densidade");
-        printf("5   :   Super Poder");
-        scanf("%d",&codAttr);
-        compararCartas(baralhoA.cartas[0],baralhoA.cartas[1],codAttr);
+        do
+        {
+            /* code */
+            printf("Insira o código do atributo para comparar : \n");
+            printf("Cód : Atributo\n");
+            printf("0   :   Populacao\n");
+            printf("1   :   Area\n");
+            printf("2   :   PIB\n");
+            printf("3   :   Pontos Turisticos\n");
+            printf("4   :   Densidade\n");
+            printf("5   :   Super Poder\n");
+            codAttr = 0;
+            scanf("%d",&codAttr);
+            compararCartas(baralhoA.cartas[0],baralhoA.cartas[1],codAttr);
+            printf("Finalizar comparacao ? \n[Sim = 0 \n/\n Nao = 1]\n");
+            if(scanf("%d", &codAttr) != 1){
+                printf("Erro ao codigo\n");
+                return 1;
+            };
+            
+        } while (sair == 1);
+        
+        
+        
     };
     
     if (errno != 0){
